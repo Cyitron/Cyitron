@@ -1,0 +1,5 @@
+- 👋 Hi, I’m @Cyitron, as know as Gabriel Caldieraro Lencina, I am brazilian
+- 👀 I’m interested in prog, AI, Games, videos and sounds
+- 🌱 I’m currently learning code languages
+- 💞️ I’m looking to collaborate on all opprtunities than will be make me grow
+- 📫 How to reach me [Linkedin](https://www.linkedin.com/in/gabriel-caldieraro-lencina-7794b1143/), gclencina@hotmail.com, [Twitter](https://twitter.com/GabrielCLencina), [Instagram](https://www.instagram.com/gabriellencina/)
