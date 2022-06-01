@@ -24,35 +24,41 @@ int main () {
     
     char ch;
 
-    cout << "---------------------------------------" << endl;
-    cout << "My Business System Manager" << endl;
-    cout << "1. Register a client" << endl;
-    cout << "2. Register a product" << endl;
-    cout << "3. Make a order" << endl;
-    cout << "4. Relatorio 1" << endl;
-    cout << "5. Relatorio 2" << endl;
-    cout << "6. Create a backup of your database" << endl;
-    cout << "7. Exit program" << endl;
-    cout << "--------------------------------------" << endl << endl;
+    
 
     do {
+
+        cout << "---------------------------------------" << endl;
+        cout << "My Business System Manager" << endl;
+        cout << "1. Register a client" << endl;
+        cout << "2. Register a product" << endl;
+        cout << "3. Make a order" << endl;
+        cout << "4. Relatorio 1" << endl;
+        cout << "5. Relatorio 2" << endl;
+        cout << "6. Create a backup of your database" << endl;
+        cout << "7. Exit program" << endl;
+        cout << "--------------------------------------" << endl << endl;
+
         if(ch == '1') {
-            //cadatro de clientes
-            cout << "Enter a name of a new client: ";
-            string nome;
-            cin >> nome;
-            cout << "Enter with a adress: ";
-            string adress;
-            cin >> adress;
-            cout << "Enter with a CPF: ";
-            string cpf;
-            cin >> cpf;
-            
-            size_t id;
-            // ID do cliente ser autoincrementado e ler o arquivo backup para não sobrescrever outro ID
+                
+                //cadatro de clientes
+                cout << "Enter a name of a new client: ";
+                string nome;
+                cin >> nome;
+                cout << "Enter with a adress: ";
+                string adress;
+                cin >> adress;
+                cout << "Enter with a CPF: ";
+                string cpf;
+                cin >> cpf;
+                
+                size_t id;
+                // ID do cliente ser autoincrementado e ler o arquivo backup para não sobrescrever outro ID
 
 
-            clientes(id, nome, adress, cpf);
+                clientes newcliente(id, nome, adress, cpf);
+                ListOfClientes.push_back(newcliente);
+                printListOfClientes(ListOfClientes);
         }
             
 
@@ -61,7 +67,11 @@ int main () {
         }
 
         if(ch == '3') {
-            //lançamentos de pedidos
+            //lançamentos de pedidos7
+            printListOfItens(ListOfItens);
+            cout << "Choose one: " << endl;
+            getinline(id_item)
+            
         }
 
         if(ch == '4') {
@@ -80,4 +90,18 @@ int main () {
     
 
     return 0;
+}
+
+void printListOfItens(vector<itens> &List)
+{
+
+}
+
+void printListOfClientes(vector<clientes> &List)
+{
+    for (size_t i = 0; i < List.size(); i++)
+    {
+        /* code */
+    }
+    
 }

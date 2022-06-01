@@ -10,7 +10,7 @@ class clientes {
         size_t id_cliente;
         string name;
         string endereco;
-        string cpf;
+        string _cpf;
 
     public:
         // cadastro
@@ -30,41 +30,41 @@ class itens {
     private:
         size_t id_item;
         string description;
-        float valor;
+        float value;
 
     public:
-        itens(size_t id, string descricao, float  valor);
+        itens(size_t id, string descricao, float valor);
         void SetId_itens(size_t Id_itens);
         void Setdesc(string desc);
-        void SetValor(float val);
+        void SetValue(float value);
 
         size_t GetId_itens();
         string GetDesc();
-        float GetValor();
+        float GetValue();
 };
 
 class pedidos {
     private:
         size_t  id_pedido;
         clientes id_cliente;
-        vector<itens> id_itens;
+        vector<size_t> id_itens;
 
     public:
-        pedidos(size_t  id, clientes  id_cliente, vector<itens> id_item);
+        pedidos(size_t id, clientes cliente, vector<size_t> item);
 
         void SetPedido(size_t id_ped);
-        void SetPedCliente(clientes id_cliente);
-        void SetPedValor(vector<itens> id_itens);
+        void SetPedCliente(clientes cliente);
+        void SetPedValor(vector<size_t> id_itens);
 
         size_t GetId_Pedidos();
         clientes GetId_cliente();
-        vector<itens> GetId_itens();
+        vector<size_t> GetId_itens();
 
-        // void Square::ShowInfo()
-        // {
-        //     cout << " Edge: " << m_edge << " Pos: " << m_position.GetX() << " - " <<  
-        //     m_position.GetY() << endl;
-        // }
+        void Clientes::ShowInfo()
+        {
+            cout << " ID: " <<  << " Nome: " << m_position.GetX() << " Endereço: " <<  
+            m_position.GetY() << "CPF: " << cpf << endl;
+        }
 
         
 };
