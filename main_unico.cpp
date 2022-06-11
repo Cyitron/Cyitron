@@ -83,13 +83,17 @@ class Itens {
 
 void LoadDataClients (vector<Clientes> &List);
 void LoadDataItens (vector<Itens> &List);
+bool SaveFile(string filename, const vector<pair<string, vector<string>>> &List);
+bool SearchSubstr(string str, vector<Itens> &List);
 
 int main () {
+
     char ch;
 
     vector<Clientes> ListOfClientes;
     vector<Itens> ListOfItens;
     //vector<Pedidos> ListOfPedidos;
+    vector<pair<string, vector<string>>> ListOfFiles;
     
     //Load database
     LoadDataClients (ListOfClientes);
@@ -103,12 +107,13 @@ int main () {
         cout << "3. Register a product" << endl;
         cout << "4. Show products" << endl;
         cout << "5. Make a order" << endl;
-        cout << "4. Relatorio 1" << endl;
-        cout << "5. Relatorio 2" << endl;
-        cout << "6. Create a backup of your database" << endl;
-        cout << "7. Exit program" << endl;
+        cout << "6. Search for a substring of a item" << endl;
+        cout << "7. Relatorio 2" << endl;
+        cout << "8. Create a backup of your database" << endl;
+        cout << "9. Exit program" << endl;
         cout << "--------------------------------------" << endl << endl;
 
+        cout << "Enter with a number: ";
         cin >> ch;
 
         if(ch == '1') {
@@ -132,6 +137,8 @@ int main () {
             Clientes cliente(id_cliente, nome, adress, cpf);
 
             ListOfClientes.push_back(cliente);
+
+            continue;
         }
 
         if(ch == '2') {
@@ -142,7 +149,8 @@ int main () {
                 << "Adress : " << ListOfClientes.at(i).GetAdress() << endl
                 << "CPF : " << ListOfClientes.at(i).GetCpf() << endl;
             }
-            
+
+            continue;
         } 
 
         if(ch == '3') {
@@ -163,6 +171,8 @@ int main () {
             Itens item(id_item, item_description, item_value);
 
             ListOfItens.push_back(item);
+
+            continue;
         }
 
         if(ch == '4') {
@@ -172,6 +182,8 @@ int main () {
                 << "Description : " << ListOfItens.at(i).GetDescription() << endl
                 << "Value : " << ListOfItens.at(i).GetValue() << endl;
             }
+
+            continue;
         }
         
         if(ch == '5') {
@@ -191,13 +203,67 @@ int main () {
 
             //ListOfPedidos.push_back(pedido);
             //relatorio 2
+
+            continue;
         }
 
         if(ch == '6') {
-            //criar arquivo (backup)
+
+            size_t id_item = ListOfItens.size();
+            string item_description;
+            float item_value;
+
+            Itens item(id_item, item_description, item_value);
+
+            ListOfItens.push_back(item);
+            
+            cin.get();
+
+            cout << endl << "Enter with a substring to search : " << endl;
+            string str;
+            getline(cin, str);
+
+            if (SearchSubstr(str, ListOfItens) == true) {
+                cout << "Number of strings found : " << id_item << endl << endl;
+                for (size_t i = 0; i < ListOfItens.size(); i++)
+                {
+                    cout << item_description.at(i) << endl;
+                }
+            } else {
+                cout << "Substring not found" << endl;
+            }
+
+            // size_t id_item = ListOfItens.size();
+
+            // cin.get();
+
+            // cout << "Enter with a drescription: ";
+            // string item_description;
+            // getline (cin, item_description);
+
+            // cout << "Enter with a value: ";
+            // float item_value;
+            // cin >> item_value;
+
+            // Itens item(id_item, item_description, item_value);
+
+            // ListOfItens.push_back(item);
+
+            continue;
         }
 
         if(ch == '7') {
+            
+            continue;
+        }
+
+        if(ch == '8') {
+            
+            continue;
+        }
+
+        if(ch == '9') {
+
             break;
         }
     }
@@ -238,6 +304,7 @@ void LoadDataClients (vector<Clientes> &List) {
 }
 
 void LoadDataItens (vector<Itens> &List) {
+
     ifstream itens_file;
     itens_file.open("itens.txt");
 
@@ -268,4 +335,70 @@ void LoadDataItens (vector<Itens> &List) {
 
         b++;
     }
+}
+
+bool SearchSubstr(string str, vector<Itens> &List)
+{
+    ifstream itens_file;
+    itens_file.open("itens.txt");
+
+    string string_from_file;
+    vector <string> list_from_file;
+
+    if (!itens_file.is_open()) {
+        cout << "File itens.txt could not have been open!" << endl;
+    } 
+    else {
+        cout << "File itens.txt opened!" << endl;
+    }
+
+    while(getline(itens_file, string_from_file)) {
+        list_from_file.push_back(string_from_file);
+    }
+
+    size_t b = 0;
+
+    for (size_t i = 0; i < list_from_file.size(); i += 3)
+    {
+        float a = stod (list_from_file.at(i+2));
+
+        Itens c (b, list_from_file.at(i+1), a);
+        List.push_back(c);
+
+        b++;
+    }
+
+    for (size_t i = 0; i < list_from_file.size(); i++) {
+
+        string word = list_from_file.at(i);
+        size_t pos = word.find(str);
+        // for (size_t j = 0; j < List.at(i).second.size(); j++) {
+        //     string word = List.at(i).second.at(j);
+        //     size_t pos = word.find(str);
+        //     if (pos < word.length()) {
+        //         indices.push_back(j);
+        //     }
+        // }
+    }
+
+    itens_file.close();
+
+    return true;
+}
+
+bool SaveFile(string filename, const vector<pair<string, vector<string>>> &List)
+{
+  ofstream fileWriter(filename);
+  if (!fileWriter.is_open()) {
+    cout << "Error, cannot open file" << endl;
+    return false;
+  }
+  for (size_t i = 0; i < List.size(); i++) {
+    for (size_t j = 0; j < List.at(i).second.size(); j++) {
+      fileWriter << List.at(i).second.at(j) << endl;
+    }
+    fileWriter << "==================" << endl;
+  }
+  fileWriter.close();
+  return true;
 }
