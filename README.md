@@ -1,4 +1,4 @@
-## Hi there 👋
+## Hello there 👋
 
 <div align="center">
 ### Olá, Bem vindo(a) ao meu perfil👋 Me chamo Gabriel Lencina!
