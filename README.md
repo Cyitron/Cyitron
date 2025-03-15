@@ -34,7 +34,7 @@ I am passionate about **Hardware Engineering**, with a particular interest in **
 ### 🖥️ About Me:
 - 🎓 **Computer Engineering student at UFSC**  
 - 🔬 Passionate about **Hardware Design, FPGA, and Embedded Systems**  
-- ⚡ Skilled in **Verilog, VHDL, C, Python, and low-level programming**  
+- ⚡ Skilled in **Verilog, VHDL, C, C++, assembly, and low-level programming**  
 - 🚀 Enthusiast of **digital circuits, logic design, and hardware acceleration**  
 
 ---
